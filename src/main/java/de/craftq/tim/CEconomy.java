@@ -2,6 +2,7 @@ package de.craftq.tim;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import de.craftq.tim.utils.VaultHandler;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.ServicePriority;
@@ -37,7 +38,7 @@ public class CEconomy extends JavaPlugin {
         System.out.println("[CraftQEconomy] Das Plugin wurde aktiviert.");
 
         if(getServer().getPluginManager().getPlugin("Vault") != null) {
-            getServer().getPluginManager().register(net.milkbowl.vault.economy.Economy.class, new VaultHandler(this),
+            getServer().getServicesManager().register(net.milkbowl.vault.economy.Economy.class, new VaultHandler(this),
                     this, ServicePriority.Normal);
         }
     }
