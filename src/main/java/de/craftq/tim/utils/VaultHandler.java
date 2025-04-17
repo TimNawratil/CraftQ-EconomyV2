@@ -43,7 +43,7 @@ public class VaultHandler implements Economy {
     public String format(double amount) {
         return EconomyMySQLAPI.formatMoney(amount);
     }
-
+//
     @Override
     public String currencyNamePlural() {
         return currencyNameSingular();
