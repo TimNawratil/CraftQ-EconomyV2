@@ -21,8 +21,9 @@ public class CEconomy extends JavaPlugin {
 
     File configFile = new File(getDataFolder(), "mysql.yml");
 
-    public static String pr = translateHexColorCodes("&#8BC1DB§lCraftQ §8| ");
+    public static String pr = translateHexColorCodes("&#54F465M&#55F574i&#56F683n&#57F792e&#58F8A1T&#59F9AFr&#5AFABEa&#5BFBCDd&#5CFCDCe §8| §7");
     public static String noperm = pr + "§cDazu hast Du keine Rechte.";
+    public static String noplayer = pr + "§cNur für Spieler";
 
     public static String translateHexColorCodes(String message) {
         return message.replaceAll("&#([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])([A-Fa-f0-9])", "§x§$1§$2§$3§$4§$5§$6");
@@ -35,7 +36,7 @@ public class CEconomy extends JavaPlugin {
 
         plugin = this;
 
-        System.out.println("[CraftQEconomy] Das Plugin wurde aktiviert.");
+        System.out.println("[MineQEconomy] Das Plugin wurde aktiviert.");
 
         if(getServer().getPluginManager().getPlugin("Vault") != null) {
             getServer().getServicesManager().register(net.milkbowl.vault.economy.Economy.class, new VaultHandler(this),
@@ -45,7 +46,7 @@ public class CEconomy extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        System.out.println("[CraftQEconomy] Das Plugin wurde deaktiviert.");
+        System.out.println("[MineQEconomy] Das Plugin wurde deaktiviert.");
 
         if(moneyDataSource != null) moneyDataSource.close();
     }
@@ -67,7 +68,7 @@ public class CEconomy extends JavaPlugin {
         // MySQL-Daten aus der Config laden
         String host = config.getString("mysql.host", "127.0.0.1");
         int port = config.getInt("mysql.port", 3306);
-        String database = config.getString("mysql.database", "CraftQEconomyV2");
+        String database = config.getString("mysql.database", "Economy");
         String username = config.getString("mysql.username", "root");
         String password = config.getString("mysql.password", "password");
         int maxPoolSize = config.getInt("mysql.maxPoolSize", 10); // Standardwert 10 falls nicht gesetzt
@@ -93,16 +94,16 @@ public class CEconomy extends JavaPlugin {
         // Standardwerte für MySQL-Verbindung
         config.set("mysql.host", "127.0.0.1");
         config.set("mysql.port", 3306);
-        config.set("mysql.database", "CraftQEconomyV2");
+        config.set("mysql.database", "Economy");
         config.set("mysql.username", "root");
         config.set("mysql.password", "password");
         config.set("mysql.maxPoolSize", 10);
 
         try {
             config.save(configFile);
-            System.out.println("[CraftQ-Economy] mysql.yml wurde erstellt!");
+            System.out.println("[MineTrade-Economy] mysql.yml wurde erstellt!");
         } catch (IOException e) {
-            System.out.println("[CraftQ-Economy] Fehler beim Erstellen der mysql.yml!");
+            System.out.println("[MineTrade-Economy] Fehler beim Erstellen der mysql.yml!");
             e.printStackTrace();
         }
     }
